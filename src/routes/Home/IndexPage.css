@@ -1,0 +1,10 @@
+.pageStyle :global .fm-container {
+  height: calc(50%);
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+}
+.pageStyle :global .fm-container .layout-right,
+.pageStyle :global .fm-container .layout-left {
+  width: 300px;
+}
