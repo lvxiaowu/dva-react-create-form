@@ -2,7 +2,7 @@ import React, {
     Component
 } from 'react';
 import { message } from 'antd';
-import { connect } from 'dva';
+import { connect } from 'react-redux';
 import { basicComponents, advanceComponents, layoutComponents } from './conponentConfig';
 import styles from './style/index.less';
 
@@ -13,16 +13,14 @@ class SideNav extends Component {
     };
     selected = (item) => {
         message.info(`${item.name}`)
-        const { dispatch }  = this.props
+        const { dispatch } = this.props
+
         dispatch({
-            type: 'formData/changeForm',
-            payload: item,
+            type: 'formData/add',
+            payload: {item},
         });
     }
-    componentDidMount(){
-    }
     render() {
-        console.log(this.props)
         return (
             <div className={styles.pageStyle}>
                 <div className="components-list">
@@ -45,10 +43,9 @@ class SideNav extends Component {
     }
 }
 export default connect(
-    ({formData}) => {
-        formData
+    ({ formData }) => {
+        return { formData }
     }
 )(SideNav)
-
 
 

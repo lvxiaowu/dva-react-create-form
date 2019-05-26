@@ -7,9 +7,10 @@ export const basicComponents = [
       width: '100%',
       defaultValue: '',
       required: false,
+      disabled:false,
       dataType: 'string',
       pattern: '',
-      placeholder: ''
+      placeholder: '请输入'
     }
   },
   {
@@ -22,22 +23,7 @@ export const basicComponents = [
       required: false,
       disabled: false,
       pattern: '',
-      placeholder: ''
-    }
-  },
-  {
-    type: 'number',
-    name: '计数器',
-    icon: 'icon-number',
-    options: {
-      width: '',
-      required: false,
-      defaultValue: 0,
-      min: '',
-      max: '',
-      step: 1,
-      disabled: false,
-      controlsPosition: ''
+      placeholder: '请输入'
     }
   },
   {
@@ -83,14 +69,17 @@ export const basicComponents = [
       showLabel: false,
       options: [
         {
-          value: '选项1'
+          value: '选项1',
+          label: '选项1'
         },
         {
-          value: '选项2'
+          value: '选项2',
+          label: '选项2'
         },
         {
-          value: '选项3'
-        }
+          value: '选项3',
+          label: '选项3'
+        },
       ],
       required: false,
       width: '',
@@ -129,6 +118,7 @@ export const basicComponents = [
     icon: 'icon-date',
     options: {
       defaultValue: '',
+      value:'',
       readonly: false,
       disabled: false,
       editable: true,
@@ -141,29 +131,6 @@ export const basicComponents = [
       timestamp: false,
       required: false,
       width: '',
-    }
-  },
-  {
-    type: 'rate',
-    name: '评分',
-    icon: 'icon-icon-test',
-    options: {
-      defaultValue: null,
-      max: 5,
-      disabled: false,
-      allowHalf: false,
-      required: false
-    }
-  },
-  {
-    type: 'color',
-    name: '颜色选择器',
-    icon: 'icon-color',
-    options: {
-      defaultValue: '',
-      disabled: false,
-      showAlpha: false,
-      required: false
     }
   },
   {
@@ -200,31 +167,24 @@ export const basicComponents = [
     }
   },
   {
-    type: 'switch',
-    name: '开关',
-    icon: 'icon-switch',
+    type: 'upload',
+    name: '上传',
+    icon: 'icon-tupian',
     options: {
-      defaultValue: false,
-      required: false,
+      defaultValue: [],
+      size: {
+        width: 100,
+        height: 100,
+      },
+      width: '',
+      tokenFunc: 'funcGetToken',
+      token: '',
+      domain: 'http://pfp81ptt6.bkt.clouddn.com/',
       disabled: false,
+      length: 8,
+      multiple: true
     }
   },
-  {
-    type: 'slider',
-    name: '滑块',
-    icon: 'icon-slider',
-    options: {
-      defaultValue: 0,
-      disabled: false,
-      required: false,
-      min: 0,
-      max: 100,
-      step: 1,
-      showInput: false,
-      range: false,
-      width: ''
-    }
-  }
 ]
 
 export const advanceComponents = [

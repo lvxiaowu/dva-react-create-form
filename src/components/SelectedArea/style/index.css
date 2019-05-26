@@ -1,0 +1,38 @@
+.compContainter {
+  height: 100%;
+  padding-bottom: 150px;
+}
+.compContainter :global .form-item {
+  padding: 5px 10px 18px;
+  margin: 0;
+  position: relative;
+  border-left: 5px solid transparent;
+  cursor: move;
+}
+.compContainter :global .form-item.active {
+  border-left: 5px solid #409eff;
+  background: #b3d8ff;
+}
+.compContainter :global .form-item:hover {
+  background: #ecf5ff;
+  border-left: 5px solid #ecf5ff;
+}
+.compContainter :global .form-item:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: block;
+  z-index: 1001;
+}
+.compContainter :global .form-item .btn-group {
+  text-align: right;
+  padding-top: 5px;
+  position: relative;
+  z-index: 1002;
+}
+.compContainter :global .form-item .btn-group button {
+  margin: 0 10px;
+}

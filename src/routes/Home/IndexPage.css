@@ -8,3 +8,8 @@
 .pageStyle :global .fm-container .layout-left {
   width: 300px;
 }
+.pageStyle :global .fm-container .layout-center {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+}

@@ -37,8 +37,4 @@ IndexPage.propTypes = {
 };
 
 
-export default connect(
-  ({formData}) => {
-      formData
-  }
-)(IndexPage)
+export default IndexPage

@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "set PORT=8002&&roadhog server",
+    "start": "set PORT=8003&&roadhog server",
     "build": "roadhog build",
     "lint": "eslint --ext .js src test",
     "precommit": "npm run lint"
@@ -10,6 +10,8 @@
     "antd": "^3.18.2",
     "babel-plugin-import": "^1.11.2",
     "dva": "^2.1.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
     "normalize-css": "^2.3.1",
     "react": "^16.2.0",
     "react-beautiful-dnd": "^11.0.3",
