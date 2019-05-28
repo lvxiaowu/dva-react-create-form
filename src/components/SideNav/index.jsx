@@ -2,7 +2,7 @@ import React, {
     Component
 } from 'react';
 import { message } from 'antd';
-import { connect } from 'react-redux';
+import { connect } from 'dva';
 import { basicComponents, advanceComponents, layoutComponents } from './conponentConfig';
 import styles from './style/index.less';
 
@@ -14,10 +14,9 @@ class SideNav extends Component {
     selected = (item) => {
         message.info(`${item.name}`)
         const { dispatch } = this.props
-
         dispatch({
             type: 'formData/add',
-            payload: {item},
+            payload: {item,key:new Date().getTime()},
         });
     }
     render() {

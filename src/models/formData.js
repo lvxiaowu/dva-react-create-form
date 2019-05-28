@@ -30,8 +30,10 @@ export default {
   reducers: {
     addHandle(state, action) {
       const result = Array.from(state.widgetFormSelect);
-      const { item, index = result.length } = action.payload
-      result.splice(index, 0, item)
+      const { item, key , index = result.length } = action.payload
+      const newItem = Object.assign({},item)
+      newItem.key = key
+      result.splice(index, 0, newItem)
       return { ...state, widgetFormSelect: result };
     },
     deleteHandle(state, action) {

@@ -43,16 +43,17 @@ class MiddleContent extends Component {
     });
   }
 
-  add = (item,index) =>{
+  add = (item,index) => {
     const { dispatch } = this.props
     dispatch({
       type: 'formData/add',
       payload: {
-        item,index
+        item,index,key:new Date().getTime()
       },
     });
   }
-  delete = (index) =>{
+
+  delete = (index) => {
     const { dispatch } = this.props
     dispatch({
       type: 'formData/delete',
@@ -61,11 +62,20 @@ class MiddleContent extends Component {
       },
     });
   }
+
+  handleGenerateJson = ()=>{
+    console.log('生成JSOn')
+  }
+
   render() {
     const { widgetFormSelect } = this.props.formData
     const { form } = this.props;
     return (
       <div className={styles.compContainter} >
+        <div className="btn-bar">
+          <Button onClick={this.handleGenerateJson}>生成JSON</Button>
+          <Button>预览</Button>
+        </div>
         {widgetFormSelect && widgetFormSelect.length ?
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable2">
@@ -75,7 +85,7 @@ class MiddleContent extends Component {
                   ref={provided.innerRef}
                 >
                   {widgetFormSelect.map((item, index) => (
-                    <Draggable key={item.type} draggableId={item.type} index={index} >
+                    <Draggable key={item.key||item.type} draggableId={item.key||item.type} index={index} >
                       {(provided, snapshot) => (
                         <div
                           ref={provided.innerRef}
