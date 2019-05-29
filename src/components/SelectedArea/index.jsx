@@ -3,6 +3,9 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'dva';
 import styles from './style/index.less'
 import formItem from '../Form/formItem'
+import JSONEditor from 'jsoneditor'
+// import  ace from 'ace';
+import 'jsoneditor/dist/jsoneditor.min.css'
 import {
   Row,
   Col,
@@ -26,7 +29,29 @@ class MiddleContent extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      jsonTemplate:''
     }
+  }
+  componentDidMount(){
+    // console.log(555)
+    // // create the editor
+    
+    //     var container = document.getElementById("jsoneditor");
+    //     var options = {};
+    //     var editor = new JSONEditor(container, options);
+    //     // set json
+    //     var json = {
+    //         "Array": [1, 2, 3],
+    //         "Boolean": true,
+    //         "Null": null,
+    //         "Number": 123,
+    //         "Object": {"a": "b", "c": "d"},
+    //         "String": "Hello World"
+    //     };
+    //     editor.set(json);
+
+    //     // get json
+    //     var json = editor.get();
   }
   onDragEnd = result => {
     const { source, destination } = result;
@@ -64,11 +89,41 @@ class MiddleContent extends Component {
   }
 
   handleGenerateJson = ()=>{
-    console.log('生成JSOn')
+     const { widgetFormSelect } = this.props.formData
+    //  console.log(widgetFormSelect)
+        // this.jsonTemplate = this.widgetFormSelect
+        // this.setState({
+        //   jsonTemplate:widgetFormSelect
+        // })
+      // console.log(JSON.stringify(this.widgetForm))
+      // this.$nextTick(() => {
+        // const editor = ace.edit('jsoneditor')
+        // editor.session.setMode("ace/mode/json")
+
+        // const btnCopy = new Clipboard('#copybtn')
+      // })
+      // var container = document.getElementById("jsoneditor");
+      // var options = { ajv: Ajv({ allErrors: true, verbose: true })};
+      // var editor = new JSONEditor(container, options);
+      // // set json
+      // // var json = {
+      // //     "Array": [1, 2, 3],
+      // //     "Boolean": true,
+      // //     "Null": null,
+      // //     "Number": 123,
+      // //     "Object": {"a": "b", "c": "d"},
+      // //     "String": "Hello World"
+      // // };
+      // var json = widgetFormSelect
+      // editor.set(json);
+
+        // get json
+        // var json = editor.get();
   }
 
   render() {
     const { widgetFormSelect } = this.props.formData
+    const { jsonTemplate } = this.state
     const { form } = this.props;
     return (
       <div className={styles.compContainter} >
@@ -76,6 +131,7 @@ class MiddleContent extends Component {
           <Button onClick={this.handleGenerateJson}>生成JSON</Button>
           <Button>预览</Button>
         </div>
+        <div id="jsoneditor">{jsonTemplate}</div>
         {widgetFormSelect && widgetFormSelect.length ?
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable2">
