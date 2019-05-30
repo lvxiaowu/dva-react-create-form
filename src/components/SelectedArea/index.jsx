@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { connect } from 'dva';
+import {Modal} from 'antd'
 import styles from './style/index.less'
 import formItem from '../Form/formItem'
 import JSONEditor from 'jsoneditor'
-// import  ace from 'ace';
-import 'jsoneditor/dist/jsoneditor.min.css'
 import {
   Row,
   Col,
@@ -29,29 +28,11 @@ class MiddleContent extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      jsonTemplate:''
+      visibleGenerateJson: true,
     }
   }
   componentDidMount(){
-    // console.log(555)
-    // // create the editor
-    
-    //     var container = document.getElementById("jsoneditor");
-    //     var options = {};
-    //     var editor = new JSONEditor(container, options);
-    //     // set json
-    //     var json = {
-    //         "Array": [1, 2, 3],
-    //         "Boolean": true,
-    //         "Null": null,
-    //         "Number": 123,
-    //         "Object": {"a": "b", "c": "d"},
-    //         "String": "Hello World"
-    //     };
-    //     editor.set(json);
-
-    //     // get json
-    //     var json = editor.get();
+   
   }
   onDragEnd = result => {
     const { source, destination } = result;
@@ -90,7 +71,22 @@ class MiddleContent extends Component {
 
   handleGenerateJson = ()=>{
      const { widgetFormSelect } = this.props.formData
-    //  console.log(widgetFormSelect)
+     console.log(widgetFormSelect)
+     var codeEditor = document.getElementById("codeEditor");
+       //初始化编辑器模式
+    var codeOptions = {
+      mode: 'code',
+      modes: ['code'],
+      onError: function (err) {
+        alert(err.toString());
+      }
+    };
+      var codeEditor = new JSONEditor(codeEditor, codeOptions, {
+      widgetFormSelect
+    });
+    this.setState({
+      visibleGenerateJson:true
+    })
         // this.jsonTemplate = this.widgetFormSelect
         // this.setState({
         //   jsonTemplate:widgetFormSelect
@@ -121,9 +117,13 @@ class MiddleContent extends Component {
         // var json = editor.get();
   }
 
+  handleCopy=()=>{
+    console.log('copy')
+  }
+
   render() {
     const { widgetFormSelect } = this.props.formData
-    const { jsonTemplate } = this.state
+    const { visibleGenerateJson } = this.state
     const { form } = this.props;
     return (
       <div className={styles.compContainter} >
@@ -131,7 +131,7 @@ class MiddleContent extends Component {
           <Button onClick={this.handleGenerateJson}>生成JSON</Button>
           <Button>预览</Button>
         </div>
-        <div id="jsoneditor">{jsonTemplate}</div>
+     
         {widgetFormSelect && widgetFormSelect.length ?
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable2">
@@ -166,6 +166,23 @@ class MiddleContent extends Component {
           </DragDropContext>
           : <div className="no-selected">点击左侧题型</div>
         }
+         <Modal
+          visible={visibleGenerateJson}
+          title="Title"
+          onOk={this.handleCopy}
+          onCancel={()=>this.setState({visibleGenerateJson:false})}
+          maskClosable={true}
+          footer={[
+            // <Button key="back" onClick={this.handleCancel}>
+            //   Return
+            // </Button>,
+            <Button key="submit" type="primary" onClick={this.handleCopy}>
+              复制
+            </Button>,
+          ]}
+        >
+          <div id="codeEditor" style={{width: '100%', height:' 600px'}}></div>
+        </Modal>
       </div>
     )
   }

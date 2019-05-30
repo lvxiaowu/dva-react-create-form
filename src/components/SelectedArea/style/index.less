@@ -1,56 +1,65 @@
+:global {
+  .jsoneditor {
+    border: 0 !important;
+  }
+  .jsoneditor-menu,
+  .jsoneditor-statusbar {
+    display: none;
+  }
+}
 .compContainter {
-    height: 100%;
-    padding-bottom: 150px;
+  height: 100%;
+  padding-bottom: 150px;
 
-    :global {
-        .form-item {
-            padding: 5px 10px 18px;
-            margin: 0;
-            position: relative;
-            border-left: 5px solid transparent;
-            cursor: move;
+  :global {
+    .form-item {
+      padding: 5px 10px 18px;
+      margin: 0;
+      position: relative;
+      border-left: 5px solid transparent;
+      cursor: move;
 
-            &.active {
-                border-left: 5px solid #409eff;
-                background: #b3d8ff;
-            }
+      &.active {
+        border-left: 5px solid #409eff;
+        background: #b3d8ff;
+      }
 
-            &:hover {
-                background: #ecf5ff;
-                border-left: 5px solid #ecf5ff;
-            }
+      &:hover {
+        background: #ecf5ff;
+        border-left: 5px solid #ecf5ff;
+      }
 
-            &:after {
-                content: '';
-                position: absolute;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                top: 0;
-                display: block;
-                z-index: 1001;
-            }
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        display: block;
+        z-index: 9;
+      }
 
-            .btn-group {
-                text-align: right;
-                padding-top: 5px;
-                position: relative;
-                z-index: 1002;
-                button {
-                    margin: 0 10px;
-                }
-            }
+      .btn-group {
+        text-align: right;
+        padding-top: 5px;
+        position: relative;
+        z-index: 10;
+        button {
+          margin: 0 10px;
         }
-        .btn-bar{
-            height: 50px;
-            line-height: 50px;
-            font-size: 18px;
-            border-bottom: 2px solid #e4e7ed;
-            text-align: right; 
-            padding-bottom:15px;
-            button{
-                margin-right:20px;
-            }
-        }
+      }
     }
+    .btn-bar {
+      height: 50px;
+      line-height: 50px;
+      font-size: 18px;
+      border-bottom: 2px solid #e4e7ed;
+      text-align: right;
+      padding-bottom: 15px;
+      button {
+        margin-right: 20px;
+      }
+    }
+  }
 }
